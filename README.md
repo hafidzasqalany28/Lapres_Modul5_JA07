@@ -10,6 +10,8 @@ A) Melakukan Subnetting. Disini kami menggunakan teknik VLSM.
 ![topologi5](https://user-images.githubusercontent.com/45744801/69427154-84400b80-0d61-11ea-8fd1-9bd99a5f5ca6.PNG)
 note : tulisan berwarna kuning merupakan subnet dan biru merupakan switch. 
 ![image](https://user-images.githubusercontent.com/45744801/69427105-62df1f80-0d61-11ea-8a59-b27a58500ef5.png)
+![image](https://user-images.githubusercontent.com/45744801/69437754-75b01f00-0d76-11ea-8967-1c65229a5dc2.png)
+
 
 B) Membuat file topologi.sh di putty sesuai dengan Topologi soal.
 ```
