@@ -265,28 +265,28 @@ eth0 eth2
 
 ## Soal
 
-1) Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi PIKACHU menggunakan iptables, namun Satoshi melarang kalian menggunakan MASQUERADE karena terlalu mudah.
+1. Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi PIKACHU menggunakan iptables, namun Satoshi melarang kalian menggunakan MASQUERADE karena terlalu mudah.
 
 Jawab :
 buat file script 1.sh (UML PIKACHU). kemudian bash script tersebut.
 ```
 iptables -t nat -A POSTROUTING -s 192.168.0.0/16 -o eth0 -j SNAT --to-source 10.151.72.14
 ```
-2) Karena keberadaan jaringan tersebut sudah mulai diketahui dari oleh jaringan luar, Satoshi pun merasa panik, karena merasa jaringannya masih belum aman. Oleh karena itu maka kalian diminta untuk mendrop semua akses SSH dari luar Topologi (UML) Kalian pada server yang memiliki ip DMZ (DHCP dan DNS SERVER) pada PIKACHU demi menjaga keamanan.
+2. Karena keberadaan jaringan tersebut sudah mulai diketahui dari oleh jaringan luar, Satoshi pun merasa panik, karena merasa jaringannya masih belum aman. Oleh karena itu maka kalian diminta untuk mendrop semua akses SSH dari luar Topologi (UML) Kalian pada server yang memiliki ip DMZ (DHCP dan DNS SERVER) pada PIKACHU demi menjaga keamanan.
 
 Jawab :
 buat file script 2.sh (UML PIKACHU). kemudian bash script tersebut.
 ```
 iptables -A FORWARD -p tcp --dport 22 -d 10.151.73.24/29 -i eth0 -j DROP
 ```
-3) Karena tim kalian maksimal terdiri dari 2 atau 3 orang saja, Satoshi meminta kalian untuk hanya membatasi DHCP dan DNS server hanya boleh menerima maksimal 2 atau 3(jumlah kelompok) koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server , selebihnya akan di DROP.
+3. Karena tim kalian maksimal terdiri dari 2 atau 3 orang saja, Satoshi meminta kalian untuk hanya membatasi DHCP dan DNS server hanya boleh menerima maksimal 2 atau 3(jumlah kelompok) koneksi ICMP secara bersamaan yang berasal dari mana saja menggunakan iptables pada masing masing server , selebihnya akan di DROP.
 
 Jawab :
 buat file script 3.sh (UML MEW dan ARTICUNO). kemudian bash script tersebut.
 ```
 iptables -A -p icmp -m connlimit --connlimit-above 2 --connlimit-mask 0 -j DROP
 ```
-(4) Kalian juga diminta untuk mengkonfigurasi PIKACHU untuk dapat membedakan ketika MEW
+4. Kalian juga diminta untuk mengkonfigurasi PIKACHU untuk dapat membedakan ketika MEW
 diakses dari subnet AJK, akan diarahkan pada MEWTWO dengan port 1234.
 
 Jawab :
@@ -294,7 +294,7 @@ buat file script 4.sh (UML PIKACHU). kemudian bash script tersebut.
 ```
 iptables -t nat -A PREROUTING -d 10.151.73.67 -s 10.151.36.0/24 -p tcp --dport 1234 -j DNAT --to-destination 192.168.1.130:1234
 ```
-5) Sedangkan ketika diakses dari subnet INFORMATIKA akan diarahkan pada MOLTRES dengan port 1234.
+5. Sedangkan ketika diakses dari subnet INFORMATIKA akan diarahkan pada MOLTRES dengan port 1234.
 
 Jawab :
 buat file script 5.sh (UML PIKACHU). kemudian bash script tersebut.
@@ -304,7 +304,7 @@ iptables -t nat -A PREROUTING -d 10.151.73.67 -s 10.151.252.0/22 -p tcp --dport 
 
 kemudian kalian diminta untuk membatasi akses ke MEW yang berasal dari SUBNET AJK dan SUBNET INFORMATIKA dengan peraturan dibawah ini. Selain itu paket akan di REJECT.
 
-(6) Akses dari subnet AJK hanya diperbolehkan pada pukul 08.00 - 17.00 pada hari Senin sampai
+6. Akses dari subnet AJK hanya diperbolehkan pada pukul 08.00 - 17.00 pada hari Senin sampai
 Jumat.
 
 Jawab :
@@ -313,7 +313,7 @@ buat file script 6.sh (UML MEW). kemudian bash script tersebut.
 iptables -A INPUT -s 10.151.36.0/24 -m time --timestart 08:00 --timestop 17:00 --weekdays Mon,Tue,Wed,Thu,Fri -j ACCEPT
 iptables -A INPUT -s 10.151.36.0/24 -m time --timestart 17:01 --timestop 07:59 -j REJECT
 ```
-(7) Akses dari subnet INFORMATIKA hanya diperbolehkan pada pukul 17.00 hingga pukul
+7. Akses dari subnet INFORMATIKA hanya diperbolehkan pada pukul 17.00 hingga pukul
 09.00 setiap harinya.
 
 Jawab :
@@ -322,7 +322,7 @@ buat file script 7.sh (UML MEW). kemudian bash script tersebut.
 iptables -A INPUT -s 10.151.252.0/22 -m time --timestart 09:01 --timestop 16:59 -j REJECT
 
 ```
-10) Karena banyak paket yang di drop oleh tim kalian, Satoshi ingin agar semua paket didrop oleh firewall (dalam topologi) tercatat dalam log pada setiap UML yang memiliki aturan drop.
+10. Karena banyak paket yang di drop oleh tim kalian, Satoshi ingin agar semua paket didrop oleh firewall (dalam topologi) tercatat dalam log pada setiap UML yang memiliki aturan drop.
 
 Jawab : 
 
