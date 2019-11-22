@@ -46,7 +46,7 @@ D) login ke semua uml.
 
 E) Hilangkan tanda pagar (#) bagian net.ipv4.ip_forward=1 dengan perintah nano /etc/sysctl.conf pada semua router. yaitu PIKACHU, BLASTOISE, VENUSAUR, ARCEUS.
 
-F) kemudian jalankan perintah sysctl -p disetiap router.
+F) kemudian jalankan perintah `sysctl -p` disetiap router.
 
 G) setting IP dari setiap UML dengan dengan perintah nano /etc/network/interfaces.
 
@@ -323,6 +323,7 @@ iptables -A INPUT -s 10.151.252.0/22 -m time --timestart 09:01 --timestop 16:59 
 10) Karena banyak paket yang di drop oleh tim kalian, Satoshi ingin agar semua paket didrop oleh firewall (dalam topologi) tercatat dalam log pada setiap UML yang memiliki aturan drop.
 
 Jawab : 
+
 buat file script 10.sh (UML PIKACHU). kemudian bash script tersebut.
 ```
 iptables -N LOGGING 
